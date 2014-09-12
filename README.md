@@ -95,4 +95,16 @@ When I click the button with name "<*>"
 When I click the button with id "<*>"
 When I click the button with css "<*>"
 When I click the button with xpath "<*>"
+When I wait <*> seconds
+Then I should be on the page with url "<*>"
+Then I should see the text "<*>"
+Then I should not see the text "<*>"
+Then I should see the following text 
+    """
+    <*>
+    """
+Then I should not see the following text
+    """
+    <*>
+    """
 ```
