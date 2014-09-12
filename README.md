@@ -44,7 +44,7 @@ You can define steps that execute other steps. For example, you can consolidate 
 Given I am on the page with url "http://www.example.com"
 When I put "test" in the field with name "username"
 And I put password in the field with name "password"
-And I click the button with text "Login"
+And I click the button with id "login"
 ```
 to the single Given statement:
 ```
