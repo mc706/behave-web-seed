@@ -1,8 +1,10 @@
 """
 This file is a prebuilt library to wrap splinter. It goes with the environments.py
-You can use it to quickly setup tests using only feature files
+You can use it to quickly setup tests using only feature files. For more splinter documentation
+visit their site at http://splinter.cobrateam.info/
+The browser object you would use in splinter is available via context.browser
 
-It is lovingly shared and free to use and modify by Ryan McDevitt (mc706.com)
+It is lovingly shared and free to use and modify by Ryan McDevitt (http://mc706.com)
 """
 from behave import *
 import time
