@@ -46,6 +46,18 @@ def step_impl(context, selector, value):
 def step_impl(context, value, key):
     context.browser.choose(key, value)
 
+
+@when('I choose the "{value}" option from the dropdown with name "{key}"')
+def step_impl(context, value, key):
+    context.browser.select(key, value)
+
+@when('I {bool} the checkbox with name "{key}"')
+def step_impl(context, bool, key):
+    if bool == "check":
+        context.browser.check(key)
+    elif bool == "uncheck":
+        context.browser.uncheck(key)
+
 @when('I wait {x} seconds')
 def step_impl(context, x):
     time.sleep(float(x))
