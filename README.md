@@ -35,3 +35,14 @@ behave
 ```
 
 The framework will do the rest.
+
+To Run a particlar feature run the feature name as an argument
+
+```
+behave <feature_name>
+```
+for example
+```
+behave example
+```
+will only run the example feature, and not the websample feature
