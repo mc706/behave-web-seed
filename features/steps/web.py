@@ -1,3 +1,9 @@
+"""
+This file is a prebuilt library to wrap splinter. It goes with the environments.py
+You can use it to quickly setup tests using only feature files
+
+It is lovingly shared and free to use and modify by Ryan McDevitt (mc706.com)
+"""
 from behave import *
 import time
 

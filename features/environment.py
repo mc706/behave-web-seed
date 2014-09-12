@@ -1,3 +1,10 @@
+"""
+This file is a pre-setup environments file to make splinter play nice with behave
+It is setup to take screenshots whenever of the browser if your steps fail
+To change which browser you are using, change the string in Browser(). Note you may need to install Chromedriver for chrome
+
+It is lovingly shared and free to use and modify by Ryan McDevitt (mc706.com)
+"""
 import re, os, datetime
 from splinter.browser import Browser
 
@@ -7,7 +14,7 @@ SCREENSHOT_DIRECTORY = BASE_DIR + "/screenshots/"
 
 
 def before_all(context):
-    context.browser = Browser('chrome')
+    context.browser = Browser('firefox')
     context.browser.driver.maximize_window()
 
 
