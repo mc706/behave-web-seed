@@ -1,4 +1,5 @@
 behave==1.2.4
+chromedriver==2.10
 enum34==1.0
 parse==1.6.4
 parse-type==0.3.4
