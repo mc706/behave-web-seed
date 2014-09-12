@@ -3,13 +3,6 @@ This file is a prebuilt library to wrap splinter. It goes with the environments.
 You can use it to quickly setup tests using only feature files
 
 It is lovingly shared and free to use and modify by Ryan McDevitt (mc706.com)
-
-browser.find_by_css('h1')
-browser.find_by_xpath('//h1')
-browser.find_by_tag('h1')
-browser.find_by_name('name')
-browser.find_by_id('firstheader')
-browser.find_by_value('query')
 """
 from behave import *
 import time
@@ -32,14 +25,22 @@ def step_impl(context, value, selector, key):
 @when('I click the button with {selector} "{value}"')
 def step_impl(context, selector, value):
     if selector == 'name':
-        button = context.browser.find_by_name(value)
+        context.browser.find_by_name(value).click()
     elif selector == 'id':
-        button = context.browser.find_by_id(value)
+        context.browser.find_by_id(value).click()
     elif selector == 'css':
-        button = context.browser.find_by_css(value)
+        context.browser.find_by_css(value).click()
     elif selector == "xpath":
-        button = context.browser.find_by_xpath(value)
-    button.click()
+        context.browser.find_by_xpath(value).click()
+
+@when('I click the link with {selector} "{value}"')
+def step_impl(context, selector, value):
+    if selector == "id":
+        context.browser.find_by_id(value).click()
+    elif selector == "text":
+        context.browser.click_link_by_text(value)
+    elif selector == "href":
+        context.browser.click_link_by_href(value)
 
 @when('I choose the "{value}" option from the radio buttons with name "{key}"')
 def step_impl(context, value, key):
