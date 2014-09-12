@@ -1,4 +1,5 @@
 Feature: showing off behave
+  This file shows off the different ways to use a feature file
 
   Scenario: run a simple test
     Given we have behave installed
@@ -38,3 +39,4 @@ Feature: showing off behave
    When we count the number of people in each department
    Then we will find two people in "Silly Walks"
    But we will find one person in "Beer Cans"
+
