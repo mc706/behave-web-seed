@@ -3,7 +3,7 @@ from splinter.browser import Browser
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TODAY = datetime.date.today()
-SCREENSHOT_DIRECTORY = BASE_DIR + "/screenshots"
+SCREENSHOT_DIRECTORY = BASE_DIR + "/screenshots/"
 
 
 def before_all(context):
@@ -18,10 +18,10 @@ def after_all(context):
 
 def after_step(context, step):
     if step.status == "failed":
-        dir = "/{0.year}_{0.month}_{0.day}/".format(TODAY)
-        name = step.name
+        day = "{0.year}_{0.month}_{0.day}".format(TODAY)
+        name = '[{0}]-{1}'.format(day, step.name)
         name = re.sub(' ', '_', name)
         name = re.sub('[\\\/]', '-', name)
         name = re.sub('[\"\']', '', name)
         name += '.png'
-        context.browser.driver.save_screenshot(dir + name)
+        context.browser.driver.save_screenshot(SCREENSHOT_DIRECTORY + name)
