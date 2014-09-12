@@ -23,11 +23,11 @@ def step_impl(context, value, selector, key):
     if selector == "name":
         context.browser.fill(key, value)
     elif selector == "id":
-        pass
+        context.browser.find_by_id(key).fill(value)
     elif selector == "css":
-        pass
-    elif selector == "xpaht":
-        pass
+        context.browser.find_by_css(key).fill(value)
+    elif selector == "xpath":
+        context.browser.find_by_xpath(key).fill(value)
 
 @when('I click the button with {selector} "{value}"')
 def step_impl(context, selector, value):
@@ -40,6 +40,10 @@ def step_impl(context, selector, value):
     elif selector == "xpath":
         button = context.browser.find_by_xpath(value)
     button.click()
+
+@when('I choose the "{value}" option from the radio buttons with name "{key}"')
+def step_impl(context, value, key):
+    context.browser.choose(key, value)
 
 @when('I wait {x} seconds')
 def step_impl(context, x):
