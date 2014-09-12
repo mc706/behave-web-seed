@@ -3,6 +3,13 @@ This file is a prebuilt library to wrap splinter. It goes with the environments.
 You can use it to quickly setup tests using only feature files
 
 It is lovingly shared and free to use and modify by Ryan McDevitt (mc706.com)
+
+browser.find_by_css('h1')
+browser.find_by_xpath('//h1')
+browser.find_by_tag('h1')
+browser.find_by_name('name')
+browser.find_by_id('firstheader')
+browser.find_by_value('query')
 """
 from behave import *
 import time
@@ -11,24 +18,32 @@ import time
 def step_impl(context, url):
     context.browser.visit(url)
 
-@when('I put "{value}" in the field with name "{key}"')
-def step_impl(context, value, key):
-    context.browser.fill(key, value)
+@when('I put "{value}" in the field with {selector} "{key}"')
+def step_impl(context, value, selector, key):
+    if selector == "name":
+        context.browser.fill(key, value)
+    elif selector == "id":
+        pass
+    elif selector == "css":
+        pass
+    elif selector == "xpaht":
+        pass
 
-@when('I click the button with name "{name}"')
-def step_impl(context, name):
-    button = context.browser.find_by_name(name)
+@when('I click the button with {selector} "{value}"')
+def step_impl(context, selector, value):
+    if selector == 'name':
+        button = context.browser.find_by_name(value)
+    elif selector == 'id':
+        button = context.browser.find_by_id(value)
+    elif selector == 'css':
+        button = context.browser.find_by_css(value)
+    elif selector == "xpath":
+        button = context.browser.find_by_xpath(value)
     button.click()
 
-@when('I click the button with id "{id}"')
-def step_impl(context, id):
-    button = context.browser.find_by_id(id)
-    button.click()
-
-@when('I click the button with css selector "{css}"')
-def step_impl(context, css):
-    button = context.browser.find_by_css_selector(css)
-    button.click()
+@when('I wait {x} seconds')
+def step_impl(context, x):
+    time.sleep(float(x))
 
 @then('I should be on the page with url "{url}"')
 def step_impl(context, url):
@@ -50,7 +65,3 @@ def step_impl(context):
 @then('I should not see the following text')
 def step_impl(context):
     assert not context.browser.is_text_present(context.text)
-
-@when('I wait {x} seconds')
-def step_impl(context, x):
-    time.sleep(float(x))
