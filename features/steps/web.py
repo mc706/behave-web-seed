@@ -19,6 +19,8 @@ def step_impl(context, url):
 
 @when('I put "(?P<value>.*)" in the field with (?P<selector>name|id|css|xpath) "(?P<key>.*)"')
 def step_impl(context, value, selector, key):
+    if value == "null":
+        value = "" #allows you to put "null" into a field to not fill it in
     if selector == "name":
         context.browser.fill(key, value)
     elif selector == "id":
@@ -29,8 +31,7 @@ def step_impl(context, value, selector, key):
         context.browser.find_by_xpath(key).fill(value)
 
 
-@when(
-    'I (?P<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
+@when('I (?P<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
 def step_impl(context, action, selector, value):
     if action == "click":
         if selector == 'name':
