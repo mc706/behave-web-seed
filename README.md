@@ -95,6 +95,7 @@ When I choose the "<*>" option from the radio buttons with name "<*>"
 When I choose the "<*>" option from the dropdown with name "<*>" 
 When I (check|uncheck) the checkbox with name "<*>"
 When I wait <*> second(s)
+When I (refresh|reload) the page
 Then I should be on the page with url "<*>"
 Then I should (not )see the text "<*>"
 Then I should (not )see the following text 

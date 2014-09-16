@@ -102,6 +102,11 @@ def step_impl(context, x):
     time.sleep(float(x))
 
 
+@when('I (?:refresh|reload) the page')
+def step_impl(context):
+    context.browser.reload()
+
+
 @then('I should be on (?:the )?page with url "(?P<url>.*)"')
 def step_impl(context, url):
     time.sleep(1)  # wait 1 second to make sure things resolve
