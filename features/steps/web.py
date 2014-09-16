@@ -90,7 +90,7 @@ def step_impl(context, value, key):
     context.browser.select(key, value)
 
 
-@when('I (?P<bool>check|uncheck) the checkbox with name "(?P<value>.*)"')
+@when('I (?P<bool>check|uncheck) the checkbox with name "(?P<key>.*)"')
 def step_impl(context, bool, key):
     if bool == "check":
         context.browser.check(key)
