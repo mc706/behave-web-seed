@@ -7,7 +7,7 @@ Feature: Test Out the web library
     When I click the button with name "btnG"
     Then I should see the text "<result_text>"
 
-    Examples: Amphibians
+    Examples: Searches
       | search        |  result_text  |
       | google        |  google       |
       | test          |  test         |

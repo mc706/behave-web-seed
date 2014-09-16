@@ -14,7 +14,7 @@ SCREENSHOT_DIRECTORY = BASE_DIR + "/screenshots/"
 
 
 def before_all(context):
-    context.browser = Browser('firefox')
+    context.browser = Browser('chrome')
     context.browser.driver.maximize_window()
 
 
