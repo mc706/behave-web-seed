@@ -98,6 +98,7 @@ When I wait <*> second(s)
 When I (refresh|reload) the page
 When I hit the (back|forward) button
 Then I should be on the page with url "<*>"
+Then I should be on page with title ""
 Then I should (not )see the text "<*>"
 Then I should (not )see the following text 
     """

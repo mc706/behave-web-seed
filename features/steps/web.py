@@ -29,7 +29,7 @@ def step_impl(context, value, selector, key):
         context.browser.find_by_xpath(key).fill(value)
 
 
-@when('I (?<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
+@when('I (?P<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
 def step_impl(context, action, selector, value):
     if action == "click":
         if selector == 'name':
@@ -119,6 +119,11 @@ def step_impl(context, direction):
 def step_impl(context, url):
     time.sleep(1)  # wait 1 second to make sure things resolve
     assert context.browser.url == url
+
+
+@then('I should be on page with title "(?P<title>.*)"')
+def step_impl(context, title):
+    assert context.browser.title == title
 
 
 @then('I should (?P<not_>not )?see (?:the )?text "(?P<text>.*)"')
