@@ -6,14 +6,18 @@ The browser object you would use in splinter is available via context.browser
 
 It is lovingly shared and free to use and modify by Ryan McDevitt (http://mc706.com)
 """
-from behave import *
+from behave import use_step_matcher, given, when, then
 import time
 
-@given('I am on the page with url "{url}"')
+use_step_matcher("re")
+
+
+@given('I am on (?:the )?page with url "(?P<url>.*)"')
 def step_impl(context, url):
     context.browser.visit(url)
 
-@when('I put "{value}" in the field with {selector} "{key}"')
+
+@when('I put "(?P<value>.*)" in the field with (?P<selector>name|id|css|xpath) "(?P<key>.*)"')
 def step_impl(context, value, selector, key):
     if selector == "name":
         context.browser.fill(key, value)
@@ -24,7 +28,8 @@ def step_impl(context, value, selector, key):
     elif selector == "xpath":
         context.browser.find_by_xpath(key).fill(value)
 
-@when('I click the button with {selector} "{value}"')
+
+@when('I click the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
 def step_impl(context, selector, value):
     if selector == 'name':
         context.browser.find_by_name(value).click()
@@ -35,7 +40,8 @@ def step_impl(context, selector, value):
     elif selector == "xpath":
         context.browser.find_by_xpath(value).click()
 
-@when('I click the link with {selector} "{value}"')
+
+@when('I click the link with (?P<selector>id|text|href) "(?P<value>.*)"')
 def step_impl(context, selector, value):
     if selector == "id":
         context.browser.find_by_id(value).click()
@@ -44,43 +50,73 @@ def step_impl(context, selector, value):
     elif selector == "href":
         context.browser.click_link_by_href(value)
 
-@when('I choose the "{value}" option from the radio buttons with name "{key}"')
+
+@when('I choose the "(?P<value>.*)" option from the radio buttons with name "(?P<key>.*)"')
 def step_impl(context, value, key):
     context.browser.choose(key, value)
 
 
-@when('I choose the "{value}" option from the dropdown with name "{key}"')
+@when('I choose the "(?P<value>.*)" option from the dropdown with name "(?P<key>.*)"')
 def step_impl(context, value, key):
     context.browser.select(key, value)
 
-@when('I {bool} the checkbox with name "{key}"')
+
+@when('I (?P<bool>check|uncheck) the checkbox with name "(?P<value>.*)"')
 def step_impl(context, bool, key):
     if bool == "check":
         context.browser.check(key)
     elif bool == "uncheck":
         context.browser.uncheck(key)
 
-@when('I wait {x} seconds')
+
+@when('I wait (?P<x>\d+) second(?:s)?')
 def step_impl(context, x):
     time.sleep(float(x))
 
-@then('I should be on the page with url "{url}"')
+
+@then('I should be on (?:the )?page with url "(?P<url>.*)"')
 def step_impl(context, url):
-    time.sleep(1) #wait 1 second to make sure things resolve
+    time.sleep(1)  # wait 1 second to make sure things resolve
     assert context.browser.url == url
 
-@then('I should see the text "{text}"')
-def step_impl(context, text):
-    assert context.browser.is_text_present(text)
 
-@then('I should not see the text "{text}"')
-def step_impl(context, text):
-    assert not context.browser.is_text_present(text)
+@then('I should (?P<not_>not )?see (?:the )?text "(?P<text>.*)"')
+def step_impl(context, not_, text):
+    if not_:
+        assert not context.browser.is_text_present(text)
+    else:
+        assert context.browser.is_text_present(text)
 
-@then('I should see the following text')
-def step_impl(context):
-    assert context.browser.is_text_present(context.text)
 
-@then('I should not see the following text')
-def step_impl(context):
-    assert not context.browser.is_text_present(context.text)
+@then('I should (?P<not_>not )?see the following text')
+def step_impl(context, not_):
+    if not_:
+        assert not context.browser.is_text_present(context.text)
+    else:
+        assert context.browser.is_text_present(context.text)
+
+
+@then('I should (?P<not_>not )?see an element with (?P<selector>name|id|css|xpath|tag) "(?P<value>.*)"')
+def step_impl(context, not_, selector, value):
+    if not_:
+        if selector == "css":
+            assert not context.browser.is_element_present_by_css(value)
+        elif selector == "id":
+            assert not context.browser.is_element_present_by_id(value)
+        elif selector == "tag":
+            assert not context.browser.is_element_present_by_tag(value)
+        elif selector == "name":
+            assert not context.browser.is_element_present_by_name(value)
+        elif selector == "xpath":
+            assert not context.browser.is_element_present_by_xpath(value)
+    else:
+        if selector == "css":
+            assert context.browser.is_element_present_by_css(value)
+        elif selector == "id":
+            assert context.browser.is_element_present_by_id(value)
+        elif selector == "tag":
+            assert context.browser.is_element_present_by_tag(value)
+        elif selector == "name":
+            assert context.browser.is_element_present_by_name(value)
+        elif selector == "xpath":
+            assert context.browser.is_element_present_by_xpath(value)

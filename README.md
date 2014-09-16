@@ -85,33 +85,21 @@ will only run the example feature, and not the websample feature
 ### Web Library
 I wrote a simple step library to wrap the functionality of splinter, here is a list of available commands.
 Replace the <*> with whatever you want
+Choose from (option1|option2|option3)
 ```
 Given I am on the page with url "<*>"
-When I put "<*>" in the field with name "<*>"
-When I put "<*>" in the field with id "<*>"
-When I put "<*>" in the field with css "<*>"
-When I put "<*>" in the field with xpath "<*>"
-When I click the button with name "<*>"
-When I click the button with id "<*>"
-When I click the button with css "<*>"
-When I click the button with xpath "<*>"
-When I click the link with id "<*>"
-When I click the link with text "<*>"
-When I click the link with href "<*>"
+When I put "<*>" in the field with (name|id|css|xpath) "<*>"
+When I click the (button|element) with (name|id|css|xpath) "<*>"
+When I click the link with (id|text|href) "<*>"
 When I choose the "<*>" option from the radio buttons with name "<*>" 
 When I choose the "<*>" option from the dropdown with name "<*>" 
-When I check the checkbox with name "<*>"
-When I uncheck the checkbox with name "<*>"
-When I wait <*> seconds
+When I (check|uncheck) the checkbox with name "<*>"
+When I wait <*> second(s)
 Then I should be on the page with url "<*>"
-Then I should see the text "<*>"
-Then I should not see the text "<*>"
-Then I should see the following text 
+Then I should (not )see the text "<*>"
+Then I should (not )see the following text 
     """
     <*>
     """
-Then I should not see the following text
-    """
-    <*>
-    """
+Then I should (not )see an element with (css|id|tag|name|xpath) "<*>"
 ```
