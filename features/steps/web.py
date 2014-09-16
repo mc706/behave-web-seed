@@ -107,6 +107,14 @@ def step_impl(context):
     context.browser.reload()
 
 
+@when('I hit the (?P<direction>back|forward) button')
+def step_impl(context, direction):
+    if direction == "back":
+        context.browser.back()
+    elif direction == "forward":
+        context.browser.forward()
+
+
 @then('I should be on (?:the )?page with url "(?P<url>.*)"')
 def step_impl(context, url):
     time.sleep(1)  # wait 1 second to make sure things resolve
