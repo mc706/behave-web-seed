@@ -4,7 +4,7 @@ Feature: Test Out the web library
 
     Given I am on the page with url "http://www.google.com"
     When I put "<search>" in the field with name "q"
-    When I click the button with name "btnG"
+    And I click the button with name "btnG"
     Then I should see the text "<result_text>"
 
     Examples: Searches
