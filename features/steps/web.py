@@ -29,16 +29,44 @@ def step_impl(context, value, selector, key):
         context.browser.find_by_xpath(key).fill(value)
 
 
-@when('I click the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
-def step_impl(context, selector, value):
-    if selector == 'name':
-        context.browser.find_by_name(value).click()
-    elif selector == 'id':
-        context.browser.find_by_id(value).click()
-    elif selector == 'css':
-        context.browser.find_by_css(value).click()
-    elif selector == "xpath":
-        context.browser.find_by_xpath(value).click()
+@when('I (?<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
+def step_impl(context, action, selector, value):
+    if action == "click":
+        if selector == 'name':
+            context.browser.find_by_name(value).click()
+        elif selector == 'id':
+            context.browser.find_by_id(value).click()
+        elif selector == 'css':
+            context.browser.find_by_css(value).click()
+        elif selector == "xpath":
+            context.browser.find_by_xpath(value).click()
+    elif action == "mouse over":
+        if selector == 'name':
+            context.browser.find_by_name(value).mouse_over()
+        elif selector == 'id':
+            context.browser.find_by_id(value).mouse_over()
+        elif selector == 'css':
+            context.browser.find_by_css(value).mouse_over()
+        elif selector == "xpath":
+            context.browser.find_by_xpath(value).mouse_over()
+    elif action == "right click":
+        if selector == 'name':
+            context.browser.find_by_name(value).right_click()
+        elif selector == 'id':
+            context.browser.find_by_id(value).right_click()
+        elif selector == 'css':
+            context.browser.find_by_css(value).right_click()
+        elif selector == "xpath":
+            context.browser.find_by_xpath(value).right_click()
+    elif action == "double click":
+        if selector == 'name':
+            context.browser.find_by_name(value).double_click()
+        elif selector == 'id':
+            context.browser.find_by_id(value).double_click()
+        elif selector == 'css':
+            context.browser.find_by_css(value).double_click()
+        elif selector == "xpath":
+            context.browser.find_by_xpath(value).double_click()
 
 
 @when('I click the link with (?P<selector>id|text|href) "(?P<value>.*)"')

@@ -89,7 +89,7 @@ Choose from (option1|option2|option3)
 ```
 Given I am on the page with url "<*>"
 When I put "<*>" in the field with (name|id|css|xpath) "<*>"
-When I click the (button|element) with (name|id|css|xpath) "<*>"
+When I (click|mouse over|right click|double click) the (button|element) with (name|id|css|xpath) "<*>"
 When I click the link with (id|text|href) "<*>"
 When I choose the "<*>" option from the radio buttons with name "<*>" 
 When I choose the "<*>" option from the dropdown with name "<*>" 
