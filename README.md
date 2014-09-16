@@ -105,4 +105,5 @@ Then I should (not )see the following text
     <*>
     """
 Then I should (not )see an element with (css|id|tag|name|xpath) "<*>"
+Then I should see an element with (name|id|css|path) "<*>" that has (text|class) "<*>"
 ```

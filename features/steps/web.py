@@ -29,7 +29,8 @@ def step_impl(context, value, selector, key):
         context.browser.find_by_xpath(key).fill(value)
 
 
-@when('I (?P<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
+@when(
+    'I (?P<action>click|mouse\wover|right\wclick|double\wclick) the (?:button|element) with (?P<selector>name|id|css|xpath) "(?P<value>.*)"')
 def step_impl(context, action, selector, value):
     if action == "click":
         if selector == 'name':
@@ -166,3 +167,25 @@ def step_impl(context, not_, selector, value):
             assert context.browser.is_element_present_by_name(value)
         elif selector == "xpath":
             assert context.browser.is_element_present_by_xpath(value)
+
+
+@then('I should see (?:an )element with (?P<selector>name|id|css|xpath) "(?P<value>.*)" that has (?P<check>text|class) "(?P<text>.*)"')
+def step_impl(context, selector, value, check, text):
+    if check == "text":
+        if selector == 'name':
+            assert context.browser.find_by_name(value).text == text
+        elif selector == 'id':
+            assert context.browser.find_by_id(value).text == text
+        elif selector == 'css':
+            assert context.browser.find_by_css(value).text == text
+        elif selector == "xpath":
+            assert context.browser.find_by_xpath(value).text == text
+    elif check == "class":
+        if selector == 'name':
+            assert context.browser.find_by_name(value).has_class(text)
+        elif selector == 'id':
+            assert context.browser.find_by_id(value).has_class(text)
+        elif selector == 'css':
+            assert context.browser.find_by_css(value).has_class(text)
+        elif selector == "xpath":
+            assert context.browser.find_by_xpath(value).has_class(text)
