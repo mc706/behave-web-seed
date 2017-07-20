@@ -3,13 +3,13 @@ behave-web-seed
 
 A Seed project for starting a behave testing suite for the web
 
-###example
+### example
 
 This base setup tests an application named "example". Copy the everything in the `/features` folder with "example"  
 and replace example with your feature names to create additional feature sets.
 
 
-###Requirements
+### Requirements
 
 The setup for this project's dependencies is the requirements.txt file. to use this file simply:
 
@@ -17,7 +17,7 @@ The setup for this project's dependencies is the requirements.txt file. to use t
 pip install -r requirements.txt
 ```
 
-###Features
+### Features
 `.feature` files are the files that describe the features you want to test in near plain english. Each feature is
 mapped to a step, which executes in the features context when that step is referenced.
 
@@ -32,7 +32,7 @@ or setting up a login
 
 `And` is an english placeholder. It takes the form of whatever the previous step was. If it follows a given, it acts as a given...
 
-###Steps
+### Steps
 Steps are tiny bits of reusable functionality that can be run in the context of a feature. They are defined inside of the
 `/steps` folder
 
@@ -62,7 +62,7 @@ def step_impl(context):
     ''')
 ```
 
-###Running
+### Running
 In order to run the test suite, open this directory in your terminal, install the requirements, then run 
 
 ``` 
